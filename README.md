@@ -27,7 +27,7 @@ npm test
     A promise represents the eventual result of an asynchronous operation.
     
 #### Why Promises?
-Using callback functions to achieve asynchrony in code becomes just way too complicated when you have to compose multiple asynchronous calls and make decisions depending upon the outcome of this composition. While handling the normal case is still somewhat feasible it starts to become very ugly when you have to provide rock solid exception handling.
+Using callback functions to achieve asynchronicity in code becomes just way too complicated when you have to compose multiple asynchronous calls and make decisions depending upon the outcome of this composition. While handling the normal case is still somewhat feasible it starts to become very ugly when you have to provide rock solid exception handling.
 
 #### Callback vs. Promise
 
@@ -83,11 +83,14 @@ The same thing with chained promises:
 ### Mistakes using Promises
 
 1. Promise pyramid of doom
+
     It can be very tempting to fall back into the same scheme of layering promise calls as we used to do it with common callback
     functions. Just don't do it!
 2. Forgetting to catch
+
     Forgetting to catch will swallow errors. This can result in a long hunt for bugs, once strange behaviour in your app occurs.
 3. Forgetting to return
+
     Forgetting to return can result in two unwanted behaviours. An outer promise can finish early and errors of the not returned function
     call can be swallowed.
     
@@ -112,6 +115,17 @@ The same thing with chained promises:
           }).catch(function () {
                 // Yeeey!
           });
+
+3. Promises remember their state
+    
+        var promise = $q.defer();
+        promise.then(function () {
+            console.log("yeey");
+        });
+        promise.resolve();
+        promise.then(function () {
+            console.log("yuuhuuu");
+        });
 
 ### Tasks
 
