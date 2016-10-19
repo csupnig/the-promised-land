@@ -12,7 +12,7 @@ export class YourService {
      * @returns {IPromise<string>}
      */
     public returnsPromise() : angular.IPromise<string> {
-        return this.$q.when("Franz");
+       return undefined;
     }
 
     /**
@@ -21,6 +21,6 @@ export class YourService {
      * @returns {IPromise<any>}
      */
     public returnsFailedPromise() : angular.IPromise<string> {
-        return this.$q.reject("Some error");
+        return undefined;
     }
 }

@@ -22,20 +22,13 @@ export class AppController {
     Handle all errors and set this.hasError to true if an error occurs.
      */
     public processData() : void {
-        /*this.appService.getAsyncItem((item : Item) => {
+        this.appService.getAsyncItem((item : Item) => {
             this.appService.saveAsyncItem(item, (savedItem : Item) => {
                 this.item = savedItem;
             }, (err : any) => {
                 this.hasError = true;
             });
         }, (err : any) => {
-            this.hasError = true;
-        });*/
-        this.appService.getAsyncPromisedItem().then((item : Item) => {
-            return this.appService.saveItemPromised(item);
-        }).then((saved : Item) => {
-            this.item = saved;
-        }).catch((err : any) => {
             this.hasError = true;
         });
     }
@@ -47,16 +40,6 @@ export class AppController {
     If an error occurs, set hasError to true.
      */
     public waitForData() : void {
-        this.$q.all([this.appService.asyncOne(), this.appService.asyncTwo()])
-            .then((data : Array<boolean>) => {
-                let result : boolean = true;
-                angular.forEach(data, (r : boolean) => {
-                    result = result && r;
-                });
-                this.success = result;
-            }).catch(() => {
-                this.hasError = true;
-            });
     }
 
     /*
@@ -67,12 +50,5 @@ export class AppController {
     In any case set this.success to true, because we like to pretend that everything is fine.
      */
     public doItNoMatterWhat() : void {
-        this.appService.dangerousExperiment().then((item : Item) => {
-           this.item = item;
-        }).catch(() => {
-            this.hasError = true;
-        }).finally(() => {
-            this.success = true;
-        });
     }
 }
