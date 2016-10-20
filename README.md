@@ -80,6 +80,26 @@ The same thing with chained promises:
         // handle error
     });
 
+### The contract
+
+#### There is one resolution or rejection
+A promise is resolved one time. It will never be fulfilled if it has been rejected or rejected if it has been fulfilled.
+
+#### Listeners are executed once
+A callback or errback will be executed one time and only one time.
+
+#### Promises remember their state
+A promise that is resolved with a value remembers the fulfillment. If a callback is attached in the future to this promise, it will be executed with the previously resolved value. The same is true of errbacks. If a promise is rejected and an errback is attached after the rejection, it will be executed with the rejected value. Promises behave the same way regardless of whether they are already resolved or resolved in the future.
+    
+    var promise = $q.defer();
+    promise.then(function () {
+        console.log("yeey");
+    });
+    promise.resolve();
+    promise.then(function () {
+        console.log("yuuhuuu");
+    });
+
 ### Mistakes using Promises
 
 1. Promise pyramid of doom
@@ -115,17 +135,6 @@ The same thing with chained promises:
           }).catch(function () {
                 // Yeeey!
           });
-
-3. Promises remember their state
-    
-        var promise = $q.defer();
-        promise.then(function () {
-            console.log("yeey");
-        });
-        promise.resolve();
-        promise.then(function () {
-            console.log("yuuhuuu");
-        });
 
 ### Tasks
 
