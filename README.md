@@ -157,6 +157,7 @@ A promise that is resolved with a value remembers the fulfillment. If a callback
 ####TASK 4 (AppComponent): Display data in a component
     The method longLoadingName() on the appService returns a promise on a string. It is the name of a high ranking
     official in our country. He wants his name to show up in our application. Use a component to display his name.
+    You are allowed to change the Component and the template of the component.
     
 ####TASK 5 (YourService): Implement a function returning a promise
     Implement the function returnsPromise() in YourService that returns a promise that resolves to a string.
