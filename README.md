@@ -5,7 +5,7 @@ Find out how to use Promises in Angular properly.
 ### Install
 
 ```sh
-npm i webpack typescript -g
+npm i webpack typings typescript -g
 git clone git@github.com/csupnig/the-promised-land.git
 cd the-promised-land
 npm install
